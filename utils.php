@@ -9,10 +9,6 @@ function response($data, $status = 200) {
     );
 }
 
-function get_table($table_name) {
-
-}
-
 function execute_sql($sql, ...$args) {
     global $config;
     global $dbConnection;

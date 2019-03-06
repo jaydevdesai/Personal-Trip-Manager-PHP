@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `group_details`;
 CREATE TABLE `group_details` (
   `group_id` varchar(30) NOT NULL,
   `group_name` varchar(30) NOT NULL,
-  `creation_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `creation_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,15 +47,17 @@ DROP TABLE IF EXISTS `query_replies`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `query_replies` (
-  `query_id` varchar(20) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `query_id` int(11) NOT NULL,
   `replier_id` int(11) NOT NULL,
-  `reply_text` varchar(500) NOT NULL,
-  `creation_time` datetime NOT NULL,
-  KEY `fk_query` (`query_id`),
+  `reply_text` text NOT NULL,
+  `creation_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
   KEY `fk_query_replies_login_user_id` (`replier_id`),
-  CONSTRAINT `fk_query` FOREIGN KEY (`query_id`) REFERENCES `user_query` (`query_id`),
-  CONSTRAINT `fk_query_replies_login_user_id` FOREIGN KEY (`replier_id`) REFERENCES `user_login` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  KEY `fk_query_reply_id` (`query_id`),
+  CONSTRAINT `fk_query_replies_login_user_id` FOREIGN KEY (`replier_id`) REFERENCES `user_login` (`id`),
+  CONSTRAINT `fk_query_reply_id` FOREIGN KEY (`query_id`) REFERENCES `user_query` (`query_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,6 +66,7 @@ CREATE TABLE `query_replies` (
 
 LOCK TABLES `query_replies` WRITE;
 /*!40000 ALTER TABLE `query_replies` DISABLE KEYS */;
+INSERT INTO `query_replies` VALUES (1,1,16,'test reply','2019-03-06 23:51:40');
 /*!40000 ALTER TABLE `query_replies` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,8 +134,8 @@ DROP TABLE IF EXISTS `user_documents`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_documents` (
+  `document_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `document_id` varchar(20) NOT NULL,
   `document_name` varchar(25) NOT NULL,
   `doucment_image` varchar(100) NOT NULL,
   PRIMARY KEY (`document_id`),
@@ -174,7 +177,7 @@ CREATE TABLE `user_login` (
 
 LOCK TABLES `user_login` WRITE;
 /*!40000 ALTER TABLE `user_login` DISABLE KEYS */;
-INSERT INTO `user_login` VALUES (1,'jaydevdesai15@gmail.com','8128908909',NULL,'2019-01-27 07:45:54'),(2,'jaydevdesai15@yahoo.com','1234',NULL,'2019-01-27 07:56:19'),(3,'jaydevdesai786@gmail.com','hgjgjh',NULL,'2019-01-26 15:32:46'),(4,'juned@example.com','81DC9BDB52D04DC20036DBD8313ED055','a07de6fc7260a09c4ddb2db4d05a944b','2019-02-23 04:28:29'),(16,'juned.khatri31@gmail.com','81dc9bdb52d04dc20036dbd8313ed055','a92b1bdd1a10a0ed974cce157c248f22','2019-03-02 16:59:09'),(17,'juned3247@gmail.com','4769ad580a03eae7501b5852ea17b82a','09b1d50a1efc6d05266b54f566aab97e','2019-03-03 13:28:24');
+INSERT INTO `user_login` VALUES (1,'jaydevdesai15@gmail.com','8128908909',NULL,'2019-01-27 07:45:54'),(2,'jaydevdesai15@yahoo.com','1234',NULL,'2019-01-27 07:56:19'),(3,'jaydevdesai786@gmail.com','hgjgjh',NULL,'2019-01-26 15:32:46'),(4,'juned@example.com','81DC9BDB52D04DC20036DBD8313ED055','a07de6fc7260a09c4ddb2db4d05a944b','2019-02-23 04:28:29'),(16,'juned.khatri31@gmail.com','81dc9bdb52d04dc20036dbd8313ed055','a09f055ec6eb0f4828adf8d6aa97b082','2019-03-02 16:59:09'),(17,'juned3247@gmail.com','4769ad580a03eae7501b5852ea17b82a','09b1d50a1efc6d05266b54f566aab97e','2019-03-03 13:28:24');
 /*!40000 ALTER TABLE `user_login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,14 +216,14 @@ DROP TABLE IF EXISTS `user_query`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user_query` (
+  `query_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `query_id` varchar(20) NOT NULL,
-  `query_text` varchar(500) NOT NULL,
+  `query_text` text NOT NULL,
   `creation_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`query_id`),
   KEY `fk_query_login_user_id` (`user_id`),
   CONSTRAINT `fk_query_login_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_login` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,6 +232,7 @@ CREATE TABLE `user_query` (
 
 LOCK TABLES `user_query` WRITE;
 /*!40000 ALTER TABLE `user_query` DISABLE KEYS */;
+INSERT INTO `user_query` VALUES (1,16,'test query','2019-03-06 23:37:40');
 /*!40000 ALTER TABLE `user_query` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +297,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-03-03 23:17:37
+-- Dump completed on 2019-03-06 23:53:01
