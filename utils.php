@@ -23,7 +23,9 @@ function execute_sql($sql, ...$args) {
     foreach ($args as $arg) {
         $s .= 's';
     }
-    $stmt->bind_param($s, ...$args);
+    if (count($args) > 0) {
+        $stmt->bind_param($s, ...$args);
+    }
 
     $stmt->execute();
 
@@ -43,6 +45,14 @@ function get_authorization_header() {
         return false;
     }
     return $headers['Authorization'];
+}
+
+function mysqli_get_array($res) {
+    $arr = array();
+    while ($row = mysqli_fetch_assoc($res)) {
+        array_push($arr, $row);
+    }
+    return $arr;
 }
 
 ?>
