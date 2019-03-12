@@ -21,7 +21,7 @@ function post_query($request) {
     ));
 }
 
-function post_reply($request) {
+function post_query_reply($request) {
     if (!(isset($request['post']['query_id']) && isset($request['post']['reply_text']))) {
         return response(array(
             "message" => "Please pass all parameters"
@@ -66,7 +66,7 @@ function get_queries($request) {
     ));
 }
 
-function get_replies($request) {
+function get_query_replies($request) {
     if (!isset($request['post']['query_id'])) {
         return response(array(
             "message" => "Please pass all parameters"
