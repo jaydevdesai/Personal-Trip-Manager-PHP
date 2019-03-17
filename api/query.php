@@ -73,7 +73,10 @@ function get_query_replies($request) {
         ), 400);
     }
     $query_id = $request['post']['query_id'];
-    $res = execute_sql("SELECT id, reply_text, creation_time FROM query_replies where query_id = ?", $query_id);
+    $res = execute_sql("SELECT query_replies.id, reply_text, email, name, query_replies.creation_time FROM query_replies
+    INNER JOIN user_login ON query_replies.replier_id = user_login.id
+    LEFT JOIN user_details ON query_replies.replier_id = user_details.user_id
+    WHERE query_id = ?", $query_id);
 
     if ($res->errno != 0) {
         return response(array(
