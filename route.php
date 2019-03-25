@@ -12,6 +12,9 @@ $auth_routes = array(
     "/get_queries" => "query.get_queries",
 
     "/post_query_reply" => "query.post_query_reply",
-    "/get_query_replies" => "query.get_query_replies"
+    "/get_query_replies" => "query.get_query_replies",
+    
+    "/get_note" => "notes.get_note",
+	"/update_note" => "notes.update_note"
 );
 ?>
