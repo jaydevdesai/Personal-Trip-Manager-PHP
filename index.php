@@ -31,7 +31,8 @@ $fun_name = $exploded_path[1];
 require('api/'. $filename . '.php');
 $request = array(
     "method"=> $_SERVER['REQUEST_METHOD'],
-    "post" => $_POST
+    "post" => $_POST,
+    "files" => $_FILES
 );
 if ($is_auth) {
     $token = get_authorization_header();
