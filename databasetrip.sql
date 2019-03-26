@@ -137,7 +137,7 @@ CREATE TABLE `user_documents` (
   `document_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `document_name` varchar(25) NOT NULL,
-  `doucment_image` varchar(100) NOT NULL,
+  `document_image` varchar(100) NOT NULL,
   PRIMARY KEY (`document_id`),
   KEY `fk_document_login_user_id` (`user_id`),
   CONSTRAINT `fk_document_login_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_login` (`id`)
