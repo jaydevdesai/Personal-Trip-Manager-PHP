@@ -6,9 +6,10 @@ $config = array(
     'username' => 'juned3247',
     'password' => '',
 
-    'documents_dir' => 'upload/documents/',
     'base_url' => 'http://tripmanager.tk/',
-    'index_page' => ''
+    'index_page' => '',
+    'documents_dir' => 'upload/documents/',
+    'reservations_dir' => 'upload/reservations/'
 );
 
 ?>

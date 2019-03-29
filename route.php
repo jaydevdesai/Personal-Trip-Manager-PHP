@@ -18,6 +18,9 @@ $auth_routes = array(
     "/update_note" => "notes.update_note",
 
     "/get_documents" => "document.get_documents",
-    "/upload_document" => "document.upload_document"
+    "/upload_document" => "document.upload_document",
+
+    "/get_reservations" => "reservation.get_reservations",
+    "/upload_reservation" => "reservation.upload_reservation"
 );
 ?>
