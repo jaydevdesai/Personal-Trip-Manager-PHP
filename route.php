@@ -21,6 +21,10 @@ $auth_routes = array(
     "/upload_document" => "document.upload_document",
 
     "/get_reservations" => "reservation.get_reservations",
-    "/upload_reservation" => "reservation.upload_reservation"
+    "/upload_reservation" => "reservation.upload_reservation",
+
+    "/add_shopping_item" => "shopping.add_shopping_item",
+    "/get_shopping_list" => "shopping.get_shopping_list",
+    "/delete_shopping_item" => "shopping.delete_shopping_item"
 );
 ?>
