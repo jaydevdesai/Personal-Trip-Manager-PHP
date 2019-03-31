@@ -8,7 +8,7 @@
         $trip_id = $request['post']['trip_id'];
 		$item_name = $request['post']['item_name'];
         $bought = $request['post']['bought'];
-        $bought = filter_var($bought, FILTER_VALIDATE_BOOLEAN);
+        $bought = $bought == "true" ? 1 : 0;
         
         $sql = "INSERT INTO user_shopping (trip_id, item_name, bought) VALUES (?, ?, ?)";
         $res = execute_sql($sql, $trip_id, $item_name, $bought);

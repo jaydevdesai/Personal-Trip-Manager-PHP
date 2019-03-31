@@ -25,6 +25,8 @@ $auth_routes = array(
 
     "/add_shopping_item" => "shopping.add_shopping_item",
     "/get_shopping_list" => "shopping.get_shopping_list",
-    "/delete_shopping_item" => "shopping.delete_shopping_item"
+    "/delete_shopping_item" => "shopping.delete_shopping_item",
+
+    "/get_explore_trips" => "explore.get_explore_trips"
 );
 ?>

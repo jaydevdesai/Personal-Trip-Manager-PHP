@@ -1,3 +1,3 @@
-ALTER TABLE `databaseTrip`.`user_shopping` 
+ALTER TABLE `user_shopping` 
 ADD COLUMN `id` INT(11) NOT NULL AUTO_INCREMENT FIRST,
 ADD PRIMARY KEY (`id`);
