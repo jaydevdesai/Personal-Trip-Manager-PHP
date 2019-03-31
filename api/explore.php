@@ -1,12 +1,13 @@
 <?php
     function get_explore_trips($request) {
-        if (!isset($request['post']['last_created_at'])) {
-            return response(array("message" => "Please pass all parameters"), 400);
-        }
         $limit = 3;
         $created_at_query = '';
-        $last_created_at = $request['post']['last_created_at'];
-        $created_at_exists = $last_created_at != NULL;
+        $created_at_exists = isset($request['post']['last_created_at']);
+
+        $last_created_at;
+        if ($created_at_exists) {
+            $last_created_at = $request['post']['last_created_at'];
+        }
         if ($created_at_exists) {
             $created_at_query = "AND created_at < ?";
         }
