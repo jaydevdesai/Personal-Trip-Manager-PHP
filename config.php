@@ -9,7 +9,8 @@ $config = array(
     'base_url' => 'http://tripmanager.tk/',
     'index_page' => '',
     'documents_dir' => 'upload/documents/',
-    'reservations_dir' => 'upload/reservations/'
+    'reservations_dir' => 'upload/reservations/',
+    'profiles_dir' => 'upload/profiles/'
 );
 
 ?>

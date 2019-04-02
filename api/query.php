@@ -66,6 +66,30 @@ function get_queries($request) {
     ));
 }
 
+function get_user_queries($request) {
+	
+    $res = execute_sql("SELECT query_id, query_text, email, user_details.name, user_query.creation_time FROM user_query
+	INNER JOIN user_login ON user_query.user_id = user_login.id
+    LEFT JOIN user_details ON user_query.user_id = user_details.user_id where user_query.user_id = ?
+    ORDER BY user_query.creation_time DESC",$request['user_id']);
+
+    if ($res->errno != 0) {
+        return response(array(
+            "message" => "error while executing sql",
+            "description" => $res->error
+        ), 500);
+    }
+
+    $res = $res->get_result();
+
+    $queries = mysqli_get_array($res);
+
+    return response(array(
+        "message" => "Queries fetch successfully",
+        "queries" => $queries
+    ));
+}
+
 function get_query_replies($request) {
     if (!isset($request['post']['query_id'])) {
         return response(array(
