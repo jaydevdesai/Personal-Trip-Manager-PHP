@@ -65,6 +65,7 @@ function create_trip($request) {
 
 function edit_trip($request) {
     if (!(isset($request['post']['tripName'])
+    && isset($request['post']['tripId'])
     && isset($request['post']['placeName'])
     && isset($request['post']['startDate'])
     && isset($request['post']['endDate']))) {
@@ -73,15 +74,17 @@ function edit_trip($request) {
         ), 400);
     }
     $tripName = $request['post']["tripName"];
+    $tripId = $request['post']["tripId"];
     $placeName = $request['post']["placeName"];
     $startDate = $request['post']["startDate"];
     $endDate = $request['post']["endDate"];
 
-    $res = execute_sql("UPDATE trip_details SET trip_name = ?, place_name = ?, start_date = ?, end_date = ? where user_id = ?",
+    $res = execute_sql("UPDATE trip_details SET trip_name = ?, place_name = ?, start_date = ?, end_date = ? where id = ? and user_id = ?",
         $tripName,
         $placeName,
         $startDate,
         $endDate,
+        $tripId,
 		$request['user_id']);
 		
     if ($res->errno != 0) {

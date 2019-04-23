@@ -166,7 +166,7 @@ function change_password($request){
     }
 	
 	$query = 'UPDATE user_login SET password= ? where id = ? and password = ?';
-    $res = execute_sql($query, $md5_newPass, $request['user_id'], $md5_oldPass,);
+    $res = execute_sql($query, $md5_newPass, $request['user_id'], $md5_oldPass);
     if ($res->errno != 0) {
         return response(array(
             "message" => "error while executing sql",
