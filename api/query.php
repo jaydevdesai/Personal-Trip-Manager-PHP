@@ -98,7 +98,7 @@ function delete_query($request){
     }
 	$queryId = $request['post']['queryId'];
 	
-	$res = execute_sql("DELETE FROM user_query WHERE id =? and user_id =?", $queryId, $request['user_id']);
+	$res = execute_sql("DELETE FROM user_query WHERE query_id =? and user_id =?", $queryId, $request['user_id']);
 
     if ($res->errno != 0) {
         return response(array(
@@ -120,7 +120,7 @@ function delete_query_reply($request){
     }
 	$queryReplyId = $request['post']['queryReplyId'];
 	
-	$res = execute_sql("DELETE FROM query_replies WHERE id =? and user_id =?", $queryReplyId, $request['user_id']);
+	$res = execute_sql("DELETE FROM query_replies WHERE id =? and replier_id =?", $queryReplyId, $request['user_id']);
 
     if ($res->errno != 0) {
         return response(array(
