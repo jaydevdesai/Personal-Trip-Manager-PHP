@@ -90,6 +90,50 @@ function get_user_queries($request) {
     ));
 }
 
+function delete_query($request){
+	if (!isset($request['post']['queryId'])) {
+        return response(array(
+            "message" => "Please pass all parameters"
+        ), 400);
+    }
+	$queryId = $request['post']['queryId'];
+	
+	$res = execute_sql("DELETE FROM user_query WHERE id =? and user_id =?", $queryId, $request['user_id']);
+
+    if ($res->errno != 0) {
+        return response(array(
+            "message" => "error while executing sql",
+            "description" => $res->error
+        ), 500);
+    }
+
+    return response(array(
+        "message" => "Query Deleted."
+    ));
+}
+
+function delete_query_reply($request){
+	if (!isset($request['post']['queryReplyId'])) {
+        return response(array(
+            "message" => "Please pass all parameters"
+        ), 400);
+    }
+	$queryReplyId = $request['post']['queryReplyId'];
+	
+	$res = execute_sql("DELETE FROM query_replies WHERE id =? and user_id =?", $queryReplyId, $request['user_id']);
+
+    if ($res->errno != 0) {
+        return response(array(
+            "message" => "error while executing sql",
+            "description" => $res->error
+        ), 500);
+    }
+
+    return response(array(
+        "message" => "Query Reply Deleted."
+    ));
+}
+
 function get_query_replies($request) {
     if (!isset($request['post']['query_id'])) {
         return response(array(

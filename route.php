@@ -13,9 +13,11 @@ $auth_routes = array(
     "/post_query" => "query.post_query",
     "/get_queries" => "query.get_queries",
     "/get_user_queries" => "query.get_user_queries",
+    "/delete_query" => "query.delete_query",
 
     "/post_query_reply" => "query.post_query_reply",
     "/get_query_replies" => "query.get_query_replies",
+    "/delete_query_reply" => "query.delete_query_reply",
     
     "/get_note" => "notes.get_note",
     "/update_note" => "notes.update_note",
